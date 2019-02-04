@@ -31,7 +31,10 @@ var sum = function (array){  //array - [0,1,2,3,4,5,6]
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
-var newArr = array.flat();
+function flattenDeep(array) {
+   return array.reduce((acc, val) => Array.isArray(val) ? acc.concat(flattenDeep(val)) : acc.concat(val), []);
+}
+var newArr = flattenDeep(array)
   if (newArr.length === 0) {
     return 0
   }
